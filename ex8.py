@@ -1,27 +1,27 @@
 def is_valid_date(month, day, year):
     if month < 1 or month > 12:
-        return False, "Invalid format"
+        return False
     
     days_in_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     if day < 1 or day > days_in_month[month-1]:
-        return False, "Invalid format"
+        return False
     
     if year < 1000 or year > 9999:
-        return False, "Invalid format"
+        return False
     
-    return True, "Invalid format"
+    return True
 
 def is_valid_time(hour, minute, second):
     if hour < 0 or hour > 23:
-        return False, "Invalid format"
+        return False
     
     if minute < 0 or minute > 59:
-        return False, "Invalid format"
+        return False
     
     if second < 0 or second > 59:
-        return False, "Invalid format"
+        return False
     
-    return True, ""
+    return True
 
 def convert_to_12_hour_format(hour, minute, second):
     if hour == 0:
@@ -66,9 +66,8 @@ def format_date_time(date_time_str):
     day = int(day_str)
     year = int(year_str)
     
-    is_date_valid, date_error = is_valid_date(month, day, year)
-    if not is_date_valid:
-        print(date_error)
+    if not is_valid_date(month, day, year):
+        print("Invalid format")
         return
     
     time_parts = time_part.split(':')
@@ -86,9 +85,8 @@ def format_date_time(date_time_str):
     minute = int(minute_str)
     second = int(second_str)
     
-    is_time_valid, time_error = is_valid_time(hour, minute, second)
-    if not is_time_valid:
-        print(time_error)
+    if not is_valid_time(hour, minute, second):
+        print("Invalid format")
         return
     
     formatted_date = f"{day:02d}.{month:02d}.{str(year)[-2:]}"
